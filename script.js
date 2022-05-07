@@ -48,7 +48,30 @@ heroes.forEach((item, i) => {
         background-size:contain;`;
 });
 
+let mainBackground = document.querySelectorAll('.wrapper'),
+mainBackgrounds = [  "img/backgrounds/bg (3).jpg","img/backgrounds/bg4.jpg" ,"img/backgrounds/bg5.jfif","img/backgrounds/bg6.jfif","img/backgrounds/bg7.jfif","img/backgrounds/bg8.jfif","img/backgrounds/bg (1).png","img/backgrounds/bg (2).png","img/backgrounds/bg (3).png","img/backgrounds/bg (4).png","img/backgrounds/bg (5).png","img/backgrounds/bg (6).png"];
 
+mainBackground.forEach((item, i) => {
+    
+        let timerId=setTimeout(function log(){
+           
+            item.style.cssText = `
+            background:url("${mainBackgrounds[i]}") no-repeat 50% 50%;
+            background-size:cover;`;
+            
+            if(i<mainBackgrounds.length-1){
+                i++;
+                timerId=setTimeout(log,10000);
+            }
+            else if(i=mainBackgrounds.length-1){
+                i=0;
+                timerId=setTimeout(log,10000);
+            }
+           
+        },2000);
+    
+   
+}); 
 
 
 
@@ -266,7 +289,7 @@ buts.forEach((but, i) => {
                 weapons[i].children[1].classList.add('gun__fire');
                 weapons[i].children[0].classList.add('weapon__move');
                 bodySectionBlocks.forEach(item => {
-                    if (item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')) {
+                    if (item.parentElement.parentElement.parentElement===opponents[0]) {
                         item.classList.add('soldier__kill');
                     }
                 });
@@ -295,7 +318,8 @@ buts.forEach((but, i) => {
                     bodySectionBlocks.forEach(item => {
                         if (item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')) {
                             item.classList.add('soldier__blow');
-                            item.classList.add('hide');                     
+                            item.classList.add('hide');
+                            bayraktarBomb.classList.add('hide');                     
                         }
                     });
                     setTimeout(() => {

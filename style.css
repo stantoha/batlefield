@@ -15,8 +15,38 @@ body {
 }
 
 .header {
+    display: flex;
+    align-items:center;
     height: 10vh;
     background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* Logo */
+.logo__container{
+    flex: 10%;
+    text-align:center;
+    padding: 1vh;
+}
+.trident{
+    width:auto;
+    height: 8vh;
+}
+
+
+/* Title */
+.title__container{
+    flex: 80%;
+    display: inline-block;
+    padding: 1vh;
+
+}
+.title{
+    margin: 0;
+    color: white;
+    font-size: 1.5vh;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
 }
 
 .main {
@@ -30,7 +60,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border: 1px solid black;
-    height: 90vh;
+    height: 80vh;
 }
 
 .tabcontent {
@@ -48,7 +78,7 @@ body {
     justify-content: space-around;
     position: absolute;
     top: 0;
-    left: 15vw;
+    right: 5vw;
 }
 
 .tabheader__item {
@@ -122,7 +152,7 @@ body {
     box-sizing: content-box;
     height: 90%;
     display: flex;
-    align-items: center;
+    align-items:flex-end;
     position: relative;
     justify-content: left;
 }
@@ -139,11 +169,11 @@ body {
 }
 
 .soldier__container {
-    left: -20%;
+    left: -30%;
 }
 
 .opponent__container {
-    right: -30%;
+    right: -35%;
 }
 
 
@@ -212,7 +242,7 @@ body {
     flex-direction: column;
     align-content: space-around;
     transform-origin: top;
-    border: 1px solid black;
+  /*   border: 1px solid black; */
     border-radius: 20%;
 
 }
@@ -228,7 +258,7 @@ body {
 }
 
 .soldier__move {
-    animation: soldier__move 6000ms 1 linear forwards;
+    animation: soldier__move 4000ms 1 linear forwards;
 }
 
 @keyframes soldier__move {
@@ -242,21 +272,21 @@ body {
 }
 
 .opponent__move {
-    animation: opponent__move 6000ms 1 linear forwards;
+    animation: opponent__move 4000ms 1 linear forwards;
 }
 
 @keyframes opponent__move {
     from {
-        right: -30%;
+        right: -35%;
     }
 
     to {
-        right: 45%;
+        right: 35%;
     }
 }
 
 .move__left {
-    animation: move__left 1500ms 4 linear forwards;
+    animation: move__left 1000ms 4 linear forwards;
 }
 
 @keyframes move__left {
@@ -282,7 +312,7 @@ body {
 }
 
 .move__right {
-    animation: move__right 1500ms 4 linear forwards;
+    animation: move__right 1000ms 4 linear forwards;
 }
 
 @keyframes move__right {
@@ -308,7 +338,7 @@ body {
 }
 
 .skew__move__left {
-    animation: skew__move__left 1000ms 6 linear forwards;
+    animation: skew__move__left 1000ms 4 linear forwards;
 }
 
 @keyframes skew__move__left {
@@ -326,7 +356,7 @@ body {
 }
 
 .skew__move__right {
-    animation: skew__move__right 1000ms 6 linear forwards;
+    animation: skew__move__right 1000ms 4 linear forwards;
 }
 
 @keyframes skew__move__right {
@@ -400,7 +430,7 @@ body {
 }
 
 .walking__body__move {
-    animation: walking__body__move 1000ms 6s linear forwards;
+    animation: walking__body__move 1000ms 4s linear forwards;
 }
 
 @keyframes walking__body__move {
@@ -455,24 +485,24 @@ body {
     }
 }
 .tank__container{
-    transform: scale(2.2) translateY(-20vh);
+    transform: scale(2.2) translateY(-60vh);
     position: absolute;
-   left: -15%;
-   top: -105%;
+  /*  right: -15%; */
+
 }
 
-.tank__move{
+/* .tank__move{
     animation: tank__move 8s linear 1 forwards ;
 }
 
 @keyframes tank__move{
     from{
-        left:-15% ;
+        right:-15% ;
     }
     to{
-        left:-100% ;
+        right:-100% ;
     }  
-}
+} */
 
 .tanktop__move{
     animation: tanktop__move 1s linear 1 forwards;
@@ -547,7 +577,7 @@ body {
 .smoke{
     background: url("img/Новая папка/smoke.gif") no-repeat 50% 50%;
     background-size: contain;
-    background-position: top;
+    background-position: right;
 }
 .weapon__move {
     animation: weapon__move 100ms linear infinite none;
@@ -638,17 +668,17 @@ body {
 @keyframes flow__down {
     0% {
         left: 25%;
-        top: 30%;
+        top: 55%;
     }
 
     100% {
         left: 25%;
-        top: 37%;
+        top: 62%;
     }
 }
 
 .bayraktar__container{
-    transform: translate(-55vw,-55vh);
+    transform: translate(-55vw,-25vh);
 }
 
 .bayraktar{
@@ -683,10 +713,10 @@ body {
 
 @keyframes bayraktar__fly{
     from{
-        transform: translate(-55vw,-45vh);
+        transform: translate(-55vw,-25vh);
     }
     to{
-        transform: translate(55vw,-35vh);
+        transform: translate(55vw,-15vh);
     }
 }
 
