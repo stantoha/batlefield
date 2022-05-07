@@ -259,8 +259,8 @@ buts.forEach((but, i) => {
             but.classList.remove('start');
             but.classList.add('shoot__prepare');
             but.textContent = 'приціл';
-            but.addEventListener('click', () => {
-                if (but.classList.contains('shoot__prepare')) {
+           
+             else if (but.classList.contains('shoot__prepare')) {
 
                     skewRight(soldiers[i].children[4]);
                     skewHardRight(soldiers[i].children[4].children[1]);
@@ -280,7 +280,7 @@ buts.forEach((but, i) => {
                     but.classList.remove('shoot__prepare');
                     but.classList.add('shoot');
                     but.textContent = 'постріл';
-                    but.addEventListener('click', () => {});
+                   
                 }
             });
         } else if (but.classList.contains('shoot')) {
@@ -330,7 +330,6 @@ buts.forEach((but, i) => {
                 }, 3500);
             }
         }
-    })
 })
 
 buts.forEach((but, i) => {
@@ -349,7 +348,7 @@ buts.forEach((but, i) => {
             but.classList.remove('start');
             but.classList.add('shoot__prepare');
             but.textContent = 'приціл';
-            but.addEventListener('touchstart', () => {
+
                 if (but.classList.contains('shoot__prepare')) {
 
                     skewRight(soldiers[i].children[4]);
@@ -370,7 +369,7 @@ buts.forEach((but, i) => {
                     but.classList.remove('shoot__prepare');
                     but.classList.add('shoot');
                     but.textContent = 'постріл';
-                    but.addEventListener('touchstart', () => {});
+
                 }
             });
         } else if (but.classList.contains('shoot')) {
@@ -420,5 +419,5 @@ buts.forEach((but, i) => {
                 }, 3500);
             }
         }
-    })
+   
 })
