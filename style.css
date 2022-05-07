@@ -15,12 +15,12 @@ body {
 }
 
 .header {
-    height: 6vh;
+    height: 10vh;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
 .main {
-    height: 90vh;
+    height: 88vh;
     background-color: rgba(0, 0, 0, 0.2);
     padding: 1vh;
 }
@@ -34,7 +34,7 @@ body {
 }
 
 .tabcontent {
-    flex: 95%;
+    flex: 100%;
     border: 1px solid black;
     height: 100%;
     display: flex;
@@ -44,22 +44,27 @@ body {
 }
 
 .tabheader__items {
-    flex: 5%;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top: 0;
+    left: 15vw;
 }
 
 .tabheader__item {
     display: flex;
-    flex-direction: column;
+    height: 6vh;
+    width: 4vh;
     justify-content: space-around;
     align-items: center;
     border-radius: 15px/15px;
     box-shadow: 0 0 1vh 0 black;
-    margin: 2vh;
+    margin:1vh;
     padding: 1vh;
 }
 
 .tabheader__item__active {
-    border: 10px solid orange;
+    box-shadow: 0 0 1vh 0 orange;
 }
 
 .tabheader__item__title {
@@ -67,8 +72,8 @@ body {
 }
 
 .tabheader__image {
-    height: 9vh;
-    width: 6vh;
+    height: 6vh;
+    width: 4vh;
 }
 
 
@@ -97,11 +102,12 @@ body {
 .but {
     position: absolute;
     background-color: orange;
-    top: 0;
-    left: 10%;
+    bottom: 2%;
+    left: 45%;
     padding: 1vh;
     text-align: center;
     text-transform: uppercase;
+    border-radius: 15px/15px;
     color: rgba(255, 255, 255, 0.6);
     height: auto;
     width: 13vh;
@@ -140,9 +146,6 @@ body {
     right: -30%;
 }
 
-/* .opponent__container:first-of-type{
-    transform: scale(0.3);
-} */
 
 .opponent,
 .soldier {
@@ -496,6 +499,45 @@ body {
     background-position: top;
 }
 
+.flames__blow{
+    animation: flames__blow 200ms linear 1 forwards;
+    background: url("img/Новая папка/flames2.gif") no-repeat 50% 50%;
+    background-size: contain;
+    background-position: top;
+}
+@keyframes flames__blow{
+    0%{
+        transform: scale(1);
+    }
+
+    99%{
+        transform: scale(10);
+    }
+    100%{
+        transform: scale(1);
+        visibility: hidden;
+        display: none;
+    }
+}
+
+.soldier__blow{
+    animation: soldier__blow 300ms linear 1 forwards;
+}
+@keyframes soldier__blow{
+    0%{
+        transform: translate(0,0);
+    }
+
+    99%{
+        transform: translate(150vw,50vh);
+    }
+    100%{
+        transform: translate(150vw,50vh);
+        visibility: hidden;
+        display: none;
+    }
+}
+
 .burn__fire{
     background: url("img/weapon/fire.gif") no-repeat 50% 50%;
     background-size: contain;
@@ -601,7 +643,7 @@ body {
 
     100% {
         left: 25%;
-        top: 35%;
+        top: 37%;
     }
 }
 
@@ -621,7 +663,7 @@ body {
 }
 
 .bomb__explosion{
-    animation: bomb__explosion 5s linear infinite forwards;
+    animation: bomb__explosion 5s linear 1 forwards;
     background: url("img/weapon/explode.png") no-repeat 50% 50%;
     background-size: cover;
     background-position:center;
@@ -636,7 +678,7 @@ body {
     }
 }
 .bayraktar__fly{
-    animation: bayraktar__fly 5s linear infinite forwards;
+    animation: bayraktar__fly 5s linear 1 forwards;
 }
 
 @keyframes bayraktar__fly{
@@ -649,7 +691,7 @@ body {
 }
 
 .bomb__launch{
-    animation: bomb__launch 4s linear infinite forwards;
+    animation: bomb__launch 4s linear 1 forwards;
 }
 
 @keyframes bomb__launch{

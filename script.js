@@ -40,42 +40,54 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
+let heroes = document.querySelectorAll('.hero'),
+    backgrounds = ["img/Новая папка/s72.png" , "img/Новая папка/s2.png", /* "img/Новая папка/s3.png", */ "img/Новая папка/s4.png", "img/Новая папка/s5.png", "img/Новая папка/s6.png","img/Новая папка/s1.png" ];
+
+heroes.forEach((item, i) => {
+    item.style.cssText = `background:url("${backgrounds[i]}") no-repeat 50% 50%;
+        background-size:contain;`;
+});
+
+
+
+
+
 let soldierContainers = document.querySelectorAll('.soldier__container'),
     soldiers = document.querySelectorAll('.soldier'),
     opponentContainers = document.querySelectorAll('.opponent__container'),
     opponents = document.querySelectorAll('.opponent'),
-    bloodSplatter=document.querySelectorAll('.blood__spot');
+    bloodSplatter = document.querySelectorAll('.blood__spot');
 
 let bodySectionBlocks = document.querySelectorAll('.body__section__block'),
     bodySections = document.querySelectorAll('.body__section'),
     weapons = document.querySelectorAll('.weapon__container');
-    tankBottom = document.querySelector('.tankbottom'),
-    tankTop=document.querySelector('.tanktop'),
-    bayraktar=document.querySelector('.bayraktar__container'),
-    bayraktarBomb=document.querySelector('.bayraktar__bomb'),
+tankBottom = document.querySelector('.tankbottom'),
+    tankTop = document.querySelector('.tanktop'),
+    bayraktar = document.querySelector('.bayraktar__container'),
+    bayraktarBomb = document.querySelector('.bayraktar__bomb'),
+    i = Number,
+    buts = document.querySelectorAll('.but');
 
-buts = document.querySelectorAll('.but');
 
 
+let soldierMove = function (i) {
 
-let soldierMove = function () {
-    for (let soldierContainer of soldierContainers) {
-        if (!soldierContainer.classList.contains('soldier__move')) {
-            soldierContainer.classList.add('soldier__move');
-        } else {
-            soldierContainer.classList.remove('soldier__move');
-        }
+    if (!soldierContainers[i].classList.contains('soldier__move')) {
+        soldierContainers[i].classList.add('soldier__move');
+    } else {
+        soldierContainers[i].classList.remove('soldier__move');
     }
+
 }
 
-let opponentMove = function () {
-    for (let opponentContainer of opponentContainers) {
-        if (!opponentContainer.classList.contains('opponent__move')) {
-            opponentContainer.classList.add('opponent__move');
-        } else {
-            opponentContainer.classList.remove('opponent__move');
-        }
+let opponentMove = function (i) {
+
+    if (!opponentContainers[i].classList.contains('opponent__move')) {
+        opponentContainers[i].classList.add('opponent__move');
+    } else {
+        opponentContainers[i].classList.remove('opponent__move');
     }
+
 }
 
 function moveLeft(item) {
@@ -195,206 +207,105 @@ function flowDown(item) {
     }
 }
 
-let tanktopBlow=function(){
+let tanktopBlow = function () {
     tankBottom.parentElement.parentElement.classList.add('flames');
     tankTop.classList.add('tanktop__move');
-  setTimeout(()=>{
-    tankBottom.parentElement.parentElement.classList.remove('flames');
-    tankBottom.parentElement.parentElement.classList.add('smoke');
-    tankBottom.parentElement.classList.add('burn__fire');
+    setTimeout(() => {
+        tankBottom.parentElement.parentElement.classList.remove('flames');
+        tankBottom.parentElement.parentElement.classList.add('smoke');
+        tankBottom.parentElement.classList.add('burn__fire');
 
-  },500);
+    }, 500);
 }
 
 
-    buts.forEach((but, i) => {
-        but.addEventListener('click', () => {
 
-            if (but.classList.contains('start')) {
-                soldierMove();
-                opponentMove();
-                goRight(soldiers[i]);
-                walkingBodyMove(soldiers[i]);
-                if(opponents[i].classList.contains('opponent__soldier')){
-                    goLeft(opponents[i]);
-                    walkingBodyMove(opponents[i]);
+buts.forEach((but, i) => {
+    but.addEventListener('click', () => {
+
+        if (but.classList.contains('start')) {
+            soldierMove(i);
+            opponentMove(i);
+            goRight(soldiers[i]);
+            walkingBodyMove(soldiers[i]);
+            if (opponents[i].classList.contains('opponent__soldier')) {
+                goLeft(opponents[i]);
+                walkingBodyMove(opponents[i]);
+            }
+
+            but.classList.remove('start');
+            but.classList.add('shoot__prepare');
+            but.textContent = 'приціл';
+            but.addEventListener('click', () => {
+                if (but.classList.contains('shoot__prepare')) {
+
+                    skewRight(soldiers[i].children[4]);
+                    skewHardRight(soldiers[i].children[4].children[1]);
+                    skewRight(soldiers[i].children[0]);
+                    skewHardRight(soldiers[i].children[0].children[1]);
+                    skewLeft(weapons[i]);
+
+                    if (soldiers[i].classList.contains('soldier__javeline')) {
+                        skewHardRight(soldiers[i].children[1]);
+                        skewHardLeft(soldiers[i].children[1].children[1]);
+                        skewHardLeft(soldiers[i].children[3].children[1]);
+                        skewHardRight(soldiers[i].children[1].children[1].children[2]);
+                        skewHardRight(soldiers[i].children[3].children[1].children[2]);
+                        flowDown(soldiers[i].parentElement);
+                    }
+
+                    but.classList.remove('shoot__prepare');
+                    but.classList.add('shoot');
+                    but.textContent = 'постріл';
+                    but.addEventListener('click', () => {});
                 }
+            });
+        } else if (but.classList.contains('shoot')) {
+            if (weapons[i].children[0].classList.contains('AK')) {
+                weapons[i].children[1].classList.remove('fire');
+                weapons[i].children[1].classList.add('gun__fire');
+                weapons[i].children[0].classList.add('weapon__move');
+                bodySectionBlocks.forEach(item => {
+                    if (item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')) {
+                        item.classList.add('soldier__kill');
+                    }
+                });
+            }
 
-                but.classList.remove('start');
-                but.classList.add('shoot__prepare');
-                but.textContent = 'приціл';
+            if (weapons[i].children[0].classList.contains('javeline')) {
+                weapons[i].children[1].classList.remove('rpg__fire');
+                weapons[i].children[1].classList.add('javeline__fire');
+                weapons[i].children[2].classList.add('rocket__launch');
 
-            } 
-           
-            else if (but.classList.contains('shoot__prepare')) {
-                
-                skewRight(soldiers[i].children[4]);
-                skewHardRight(soldiers[i].children[4].children[1]);
-                skewRight(soldiers[i].children[0]);
-                skewHardRight(soldiers[i].children[0].children[1]);
-                skewLeft(weapons[i]);
-
-                if(soldiers[i].classList.contains('soldier__javeline')){
-                    skewHardRight(soldiers[i].children[1]);
-                    skewHardLeft(soldiers[i].children[1].children[1]);
-                    skewHardLeft(soldiers[i].children[3].children[1]);
-                    skewHardRight(soldiers[i].children[1].children[1].children[2]);
-                    skewHardRight(soldiers[i].children[3].children[1].children[2]);
-                    flowDown(soldiers[i].parentElement);
-                }
-                
-                but.classList.remove('shoot__prepare');
-                but.classList.add('shoot');
-                but.textContent = 'постріл';
-            } 
-            
-            else if (but.classList.contains('shoot')) {
-                if(weapons[i].children[0].classList.contains('AK')){
-                    weapons[i].children[1].classList.remove('fire');
-                    weapons[i].children[1].classList.add('gun__fire');
-                    weapons[i].children[0].classList.add('weapon__move');
-                }
-                
-                 if(weapons[i].children[0].classList.contains('javeline')){
-                    weapons[i].children[1].classList.remove('rpg__fire');
-                    weapons[i].children[1].classList.add('javeline__fire');
-                    weapons[i].children[2].classList.add('rocket__launch');
-                  
-                   setTimeout(()=>{
+                setTimeout(() => {
                     tanktopBlow();
                     weapons[i].children[1].classList.remove('javeline__fire');
                     weapons[i].children[1].classList.add('rpg__fire');
-                   } ,200);
-                } 
+                }, 200);
+            }
 
-                if(weapons[i].children[0].classList.contains('remote')){
-                    bayraktar.classList.remove('bayraktar__container');
-                    bayraktar.classList.add('bayraktar__fly');
-                    setTimeout(()=>{
-                        bayraktarBomb.classList.add('bomb__launch');
-                    },1000);
-                    setTimeout(()=>{
-                        bayraktarBomb.classList.add('bomb__explosion');
-                    },3500);
-                }
-                /* bodySectionBlocks.forEach(item=>{
-                    if(item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')){
-                     item.classList.add('soldier__kill');
-                     bloodSplatter.forEach(item=>{
-                        item.classList.remove('hide');
-                        item.classList.add('show');
-                     })
-                     
-
-                    }
-                });  */
-                  
-    
-                }
-           }
-
-        )
+            if (weapons[i].children[0].classList.contains('remote')) {
+                bayraktar.classList.remove('bayraktar__container');
+                bayraktar.classList.add('bayraktar__fly');
+                setTimeout(() => {
+                    bayraktarBomb.classList.add('bomb__launch');
+                }, 1000);
+                setTimeout(() => {
+                    opponents[i].parentElement.parentElement.classList.add('flames__blow');
+                    bodySectionBlocks.forEach(item => {
+                        if (item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')) {
+                            item.classList.add('soldier__blow');
+                            item.classList.add('hide');                     
+                        }
+                    });
+                    setTimeout(() => {
+                        opponents[i].parentElement.parentElement.classList.remove('flames__blow');
+                        opponents[i].parentElement.parentElement.classList.add('smoke');
+                        opponents[i].parentElement.classList.add('burn__fire');
+                    }, 200);
+                }, 3500);
+            }
+        }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-buts.forEach((but) => {
-    but.addEventListener('click', () => {
-        if (but.classList.contains('start')) {
-            soldierMove();
-            opponentMove();
-            for (let soldier of soldiers) {
-                goRight(soldier);
-            }
-            for (let opponent of opponents) {
-                goLeft(opponent);
-            }
-            but.classList.remove('start');
-            but.classList.add('shoot__prepare');
-            but.textContent = 'приціл';
-        } 
-        else if (but.classList.contains('shoot__prepare')) {
-            for (let soldier of soldiers) {
-                skewRight(soldier.children[4]);
-                skewHardRight(soldier.children[4].children[1]);
-                skewRight(soldier.children[0]);
-                skewHardRight(soldier.children[0].children[1]);
-                for (let weapon of weapons) {
-                    skewLeft(weapon);
-                }
-                but.classList.remove('shoot__prepare');
-                but.classList.add('shoot');
-                but.textContent = 'постріл';
-            }
-        } 
-        else if (but.classList.contains('shoot')) {
-            for (let weapon of weapons) {
-                weapon.children[1].classList.remove('fire');
-                weapon.children[1].classList.add('gun__fire');
-                weapon.children[0].classList.add('weapon__move');
-            }
-
-        }
-
-    });
 })
- */
 
-
-
-
-/* 
-
-buts.forEach((but) => {
-    but.addEventListener('click', () => {
-        if (but.classList.contains('start')) {
-            soldierMove();
-            opponentMove();
-            for (let soldier of soldiers) {
-                goRight(soldier);
-            }
-            for (let opponent of opponents) {
-                goLeft(opponent);
-            }
-            but.classList.remove('start');
-            but.classList.add('shoot__prepare');
-            but.textContent = 'приціл';
-        } else if (but.classList.contains('shoot__prepare')) {
-            for (let soldier of soldiers) {
-                skewRight(soldier.children[4]);
-                skewHardRight(soldier.children[4].children[1]);
-                skewRight(soldier.children[0]);
-                skewHardRight(soldier.children[0].children[1]);
-                for (let weapon of weapons) {
-                    skewLeft(weapon);
-                }
-                but.classList.remove('shoot__prepare');
-                but.classList.add('shoot');
-                but.textContent = 'постріл';
-            }
-        } else if (but.classList.contains('shoot')) {
-            for (let weapon of weapons) {
-                weapon.children[1].classList.remove('fire');
-                weapon.children[1].classList.add('gun__fire');
-                weapon.children[0].classList.add('weapon__move');
-            }
-
-        }
-
-    });
-}) */
