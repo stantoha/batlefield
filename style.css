@@ -133,7 +133,7 @@ body {
 .but {
     position: absolute;
     background-color: orange;
-    bottom: 2%;
+    top: 2%;
     left: 45%;
     padding: 1vh;
     text-align: center;
@@ -684,10 +684,34 @@ body {
     transform: translate(-55vw,-25vh);
 }
 
-.bayraktar{
-    
+.bayraktar__aim{
+    display: block;
+    transform: scale(4)translate(-16vw,-40vh);
+    opacity: 0;
 }
 
+.bayraktar__aim img{
+    position: absolute; 
+}
+
+.bayraktar__aim__focus{
+    animation: bayraktar__aim__focus 2s linear 1 forwards;
+}
+
+@keyframes bayraktar__aim__focus{
+    0%{
+        transform: scale(4) translate(-16vw,-40vh);
+        opacity: 0;
+    }
+    99%{
+        transform: scale(1) translate(-16vw,-40vh);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1) translate(-16vw,-40vh);
+        opacity: 0;
+    }
+}
 
 .bayraktar__bomb {
     position: absolute;
@@ -739,4 +763,8 @@ body {
         transform: scale(0.1) translate(0, 500vh);
 
     }
+}
+
+.moscow__ship{
+
 }

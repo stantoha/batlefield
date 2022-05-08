@@ -85,6 +85,7 @@ let soldierContainers = document.querySelectorAll('.soldier__container'),
     tankTop = document.querySelector('.tanktop'),
     bayraktar = document.querySelector('.bayraktar__container'),
     bayraktarBomb = document.querySelector('.bayraktar__bomb'),
+    bayraktarAim = document.querySelector('.bayraktar__aim'),
     i = Number,
     buts = document.querySelectorAll('.but');
 
@@ -274,6 +275,10 @@ buts.forEach((but, i) => {
                 skewHardRight(soldiers[i].children[1].children[1].children[2]);
                 skewHardRight(soldiers[i].children[3].children[1].children[2]);
                 flowDown(soldiers[i].parentElement);
+            }
+
+            if(soldiers[i].classList.contains('soldier__bayraktar')){
+                bayraktarAim.classList.add('bayraktar__aim__focus');
             }
 
             but.classList.remove('shoot__prepare');
