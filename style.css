@@ -133,8 +133,8 @@ body {
 .but {
     position: absolute;
     background-color: orange;
-    top: 2%;
-    left: 45%;
+    top: 15%;
+    left: 10%;
     padding: 1vh;
     text-align: center;
     text-transform: uppercase;
