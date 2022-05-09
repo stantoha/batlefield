@@ -89,14 +89,14 @@ body {
     width: 4vh;
     justify-content: space-around;
     align-items: center;
-    border-radius: 15px/15px;
-    box-shadow: 0 0 1vh 0 black;
+    border-radius: 1vh/1vh;
+    box-shadow: 0 0 1vh 0 rgba(255, 255, 255, 0.6);
     margin:1vh;
     padding: 1vh;
 }
 
 .tabheader__item__active {
-    box-shadow: 0 0 1vh 0 orange;
+    box-shadow: 0 0 2vh 0 orange;
 }
 
 .tabheader__item__title {
@@ -133,16 +133,20 @@ body {
 
 .but {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin: 1vh;
     background-color: orange;
-    bottom:2%;
-    right: 5%;
-    padding: 1vh;
+    bottom:1vh;
+    right: 41%;
+    padding: 1vh 2vh;
     text-align: center;
     text-transform: uppercase;
     border-radius: 15px/15px;
     color: rgba(255, 255, 255, 0.6);
-    height: auto;
-    width: 13vh;
+    height: 6vh;
+    width: auto;
 }
 
 
@@ -246,7 +250,7 @@ body {
 .body__section:nth-of-type(4) .body__section__bottom .body__section__block:last-of-type {
     width: 3vh;
     height: 7vh;
-    transform: rotate(-90deg);
+
     transform-origin: top;
 }
 

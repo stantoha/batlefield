@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 let heroes = document.querySelectorAll('.hero'),
-    backgrounds = ["img/Новая папка/s72.png", "img/Новая папка/s2.png", /* "img/Новая папка/s3.png", */ "img/Новая папка/s4.png", "img/Новая папка/s5.png", "img/Новая папка/s6.png", "img/Новая папка/s1.png"];
+    backgrounds = ["img/Новая папка/s72.png", "img/Новая папка/s5.png", "img/Новая папка/s6.png","img/Новая папка/s1.png"];
 
 heroes.forEach((item, i) => {
     item.style.cssText = `background:url("${backgrounds[i]}") no-repeat 50% 50%;
