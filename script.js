@@ -86,6 +86,10 @@ let soldierContainers = document.querySelectorAll('.soldier__container'),
     bayraktar = document.querySelector('.bayraktar__container'),
     bayraktarBomb = document.querySelector('.bayraktar__bomb'),
     bayraktarAim = document.querySelector('.bayraktar__aim'),
+    neptuneLauncher = document.querySelector('.neptune__launcher__container'),
+    neptuneRocket = document.querySelector('.neptune__rocket'),
+    neptunefire = document.querySelector('.neptune__fire'),
+
     i = Number,
     buts = document.querySelectorAll('.but');
 
@@ -247,8 +251,11 @@ buts.forEach((but, i) => {
         if (but.classList.contains('start')) {
             soldierMove(i);
             opponentMove(i);
-            goRight(soldiers[i]);
-            walkingBodyMove(soldiers[i]);
+
+            if (!soldiers[i].classList.contains('neptune')) {
+                goRight(soldiers[i]);
+                walkingBodyMove(soldiers[i]);
+            }
             if (opponents[i].classList.contains('opponent__soldier')) {
                 goLeft(opponents[i]);
                 walkingBodyMove(opponents[i]);
@@ -257,18 +264,22 @@ buts.forEach((but, i) => {
             but.classList.remove('start');
             but.classList.add('shoot__prepare');
             but.textContent = 'приціл';
-
-
-
         } else if (but.classList.contains('shoot__prepare')) {
 
-            skewRight(soldiers[i].children[4]);
-            skewHardRight(soldiers[i].children[4].children[1]);
-            skewRight(soldiers[i].children[0]);
-            skewHardRight(soldiers[i].children[0].children[1]);
-            skewLeft(weapons[i]);
+            if (soldiers[i].classList.contains('AK__soldier')) {
+                skewRight(soldiers[i].children[4]);
+                skewHardRight(soldiers[i].children[4].children[1]);
+                skewRight(soldiers[i].children[0]);
+                skewHardRight(soldiers[i].children[0].children[1]);
+                skewLeft(weapons[i]);
+            }
 
             if (soldiers[i].classList.contains('soldier__javeline')) {
+                skewRight(soldiers[i].children[4]);
+                skewHardRight(soldiers[i].children[4].children[1]);
+                skewRight(soldiers[i].children[0]);
+                skewHardRight(soldiers[i].children[0].children[1]);
+                skewLeft(weapons[i]);
                 skewHardRight(soldiers[i].children[1]);
                 skewHardLeft(soldiers[i].children[1].children[1]);
                 skewHardLeft(soldiers[i].children[3].children[1]);
@@ -277,10 +288,20 @@ buts.forEach((but, i) => {
                 flowDown(soldiers[i].parentElement);
             }
 
-            if(soldiers[i].classList.contains('soldier__bayraktar')){
+            if (soldiers[i].classList.contains('soldier__bayraktar')) {
+                skewRight(soldiers[i].children[4]);
+                skewHardRight(soldiers[i].children[4].children[1]);
+                skewRight(soldiers[i].children[0]);
+                skewHardRight(soldiers[i].children[0].children[1]);
+                skewLeft(weapons[i]);
                 bayraktarAim.classList.add('bayraktar__aim__focus');
             }
 
+            if (soldiers[i].classList.contains('neptune')) {
+                neptuneLauncher.classList.remove('neptune__launcher');
+                neptuneLauncher.classList.add('neptune__aim__focus');
+            }
+
             but.classList.remove('shoot__prepare');
             but.classList.add('shoot');
             but.textContent = 'постріл';
@@ -330,94 +351,19 @@ buts.forEach((but, i) => {
                         opponents[i].parentElement.classList.add('burn__fire');
                     }, 200);
                 }, 3500);
+            }
+
+            if (weapons[i].children[0].classList.contains('neptune__launcher__container')) {
+/*                 neptuneRocket.classList.remove('neptune__rocket');
+ */                neptuneRocket.classList.add('neptune__rocket__launch');
+                neptunefire.classList.remove('hidden');
+                neptunefire.classList.add('shown');
             }
         }
     })
-   /*  but.addEventListener('touchstart', () => {
-
-        if (but.classList.contains('start')) {
-            soldierMove(i);
-            opponentMove(i);
-            goRight(soldiers[i]);
-            walkingBodyMove(soldiers[i]);
-            if (opponents[i].classList.contains('opponent__soldier')) {
-                goLeft(opponents[i]);
-                walkingBodyMove(opponents[i]);
-            }
-
-            but.classList.remove('start');
-            but.classList.add('shoot__prepare');
-            but.textContent = 'приціл';
 
 
 
-        } else if (but.classList.contains('shoot__prepare')) {
 
-            skewRight(soldiers[i].children[4]);
-            skewHardRight(soldiers[i].children[4].children[1]);
-            skewRight(soldiers[i].children[0]);
-            skewHardRight(soldiers[i].children[0].children[1]);
-            skewLeft(weapons[i]);
-
-            if (soldiers[i].classList.contains('soldier__javeline')) {
-                skewHardRight(soldiers[i].children[1]);
-                skewHardLeft(soldiers[i].children[1].children[1]);
-                skewHardLeft(soldiers[i].children[3].children[1]);
-                skewHardRight(soldiers[i].children[1].children[1].children[2]);
-                skewHardRight(soldiers[i].children[3].children[1].children[2]);
-                flowDown(soldiers[i].parentElement);
-            }
-
-            but.classList.remove('shoot__prepare');
-            but.classList.add('shoot');
-            but.textContent = 'постріл';
-
-        } else if (but.classList.contains('shoot')) {
-            if (weapons[i].children[0].classList.contains('AK')) {
-                weapons[i].children[1].classList.remove('fire');
-                weapons[i].children[1].classList.add('gun__fire');
-                weapons[i].children[0].classList.add('weapon__move');
-                bodySectionBlocks.forEach(item => {
-                    if (item.parentElement.parentElement.parentElement === opponents[0]) {
-                        item.classList.add('soldier__kill');
-                    }
-                });
-            }
-
-            if (weapons[i].children[0].classList.contains('javeline')) {
-                weapons[i].children[1].classList.remove('rpg__fire');
-                weapons[i].children[1].classList.add('javeline__fire');
-                weapons[i].children[2].classList.add('rocket__launch');
-
-                setTimeout(() => {
-                    tanktopBlow();
-                    weapons[i].children[1].classList.remove('javeline__fire');
-                    weapons[i].children[1].classList.add('rpg__fire');
-                }, 200);
-            }
-
-            if (weapons[i].children[0].classList.contains('remote')) {
-                bayraktar.classList.remove('bayraktar__container');
-                bayraktar.classList.add('bayraktar__fly');
-                setTimeout(() => {
-                    bayraktarBomb.classList.add('bomb__launch');
-                }, 1000);
-                setTimeout(() => {
-                    opponents[i].parentElement.parentElement.classList.add('flames__blow');
-                    bodySectionBlocks.forEach(item => {
-                        if (item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')) {
-                            item.classList.add('soldier__blow');
-                            item.classList.add('hide');
-                            bayraktarBomb.classList.add('hide');
-                        }
-                    });
-                    setTimeout(() => {
-                        opponents[i].parentElement.parentElement.classList.remove('flames__blow');
-                        opponents[i].parentElement.parentElement.classList.add('smoke');
-                        opponents[i].parentElement.classList.add('burn__fire');
-                    }, 200);
-                }, 3500);
-            }
-        }
-    }) */
+    console.log(weapons);
 });
