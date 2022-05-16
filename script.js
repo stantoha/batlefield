@@ -49,11 +49,12 @@ heroes.forEach((item, i) => {
 });
 
 let mainBackground = document.querySelectorAll('.wrapper'),
-    mainBackgrounds = ["img/backgrounds/bg (3).jpg", "img/backgrounds/bg4.jpg", "img/backgrounds/bg5.jfif", "img/backgrounds/bg6.jfif", "img/backgrounds/bg7.jfif", "img/backgrounds/bg8.jfif", "img/backgrounds/bg (1).png", "img/backgrounds/bg (2).png", "img/backgrounds/bg (3).png", "img/backgrounds/bg (4).png", "img/backgrounds/bg (5).png", "img/backgrounds/bg (6).png"];
+    mainBackgrounds = ["img/backgrounds/mordor.png"/* ,"img/backgrounds/bg (3).jpg", "img/backgrounds/bg4.jpg", "img/backgrounds/bg5.jfif", "img/backgrounds/bg6.jfif", "img/backgrounds/bg7.jfif", "img/backgrounds/bg8.jfif", "img/backgrounds/bg (1).png", "img/backgrounds/bg (2).png", "img/backgrounds/bg (3).png", "img/backgrounds/bg (4).png", "img/backgrounds/bg (5).png", "img/backgrounds/bg (6).png" */];
 
 mainBackground.forEach((item, i) => {
 
-    let timerId = setTimeout(function log() {
+    let timerId;
+    timerId = setTimeout(function log() {
 
         item.style.cssText = `
             background:url("${mainBackgrounds[i]}") no-repeat 50% 50%;
@@ -249,21 +250,43 @@ buts.forEach((but, i) => {
     but.addEventListener('click', () => {
 
         if (but.classList.contains('start')) {
-            soldierMove(i);
-            opponentMove(i);
+           
+            but.classList.remove('start');
+            but.classList.add('shoot__prepare');
+            but.textContent = 'приціл';
 
+               
+                if(!(soldiers[i].classList).contains('neptune')){
+                    soldierMove(i);
+                    opponentMove(i);
+                    goRight(soldiers[i]);
+                    walkingBodyMove(soldiers[i]);
+                    goLeft(opponents[i]);
+                    walkingBodyMove(opponents[i]);
+                } 
+                 
+                else{
+                    soldierMove(i);
+                    opponentMove(i);
+                        goLeft(soldiers[i]);
+                        walkingBodyMove(soldiers[i]);}
+              
+           
+            /* soldierMove(i);
+            opponentMove(i);
+            goLeft(opponents[i]);
             if (!soldiers[i].classList.contains('neptune')) {
                 goRight(soldiers[i]);
                 walkingBodyMove(soldiers[i]);
+                
+                walkingBodyMove(opponents[i]);
             }
             if (opponents[i].classList.contains('opponent__soldier')) {
                 goLeft(opponents[i]);
                 walkingBodyMove(opponents[i]);
-            }
+            } */
 
-            but.classList.remove('start');
-            but.classList.add('shoot__prepare');
-            but.textContent = 'приціл';
+            
         } else if (but.classList.contains('shoot__prepare')) {
 
             if (soldiers[i].classList.contains('AK__soldier')) {
@@ -354,8 +377,8 @@ buts.forEach((but, i) => {
             }
 
             if (weapons[i].children[0].classList.contains('neptune__launcher__container')) {
-/*                 neptuneRocket.classList.remove('neptune__rocket');
- */                neptuneRocket.classList.add('neptune__rocket__launch');
+                neptuneRocket.classList.remove('neptune__rocket');
+                neptuneRocket.classList.add('neptune__rocket__launch');
                 neptunefire.classList.remove('hidden');
                 neptunefire.classList.add('shown');
             }
