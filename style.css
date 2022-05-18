@@ -22,8 +22,8 @@ body {
 .header {
     display: flex;
     align-items: center;
-    height: 10vh;
-    background-color: rgba(0, 0, 0, 0.6);
+    height: 10  vh;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 
@@ -61,10 +61,10 @@ body {
 
 
 .main {
-    height: 88vh;
+    height: 90vh;
     background-color: rgba(0, 0, 0, 0.2);
-    padding: 1vh;
-}
+/*     padding: 1vh;
+ */}
 
 
 /* Tabcontainer */
@@ -74,7 +74,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border: 1px solid black;
-    height: 90%;
+    height: 100%;
 
 }
 
@@ -86,7 +86,7 @@ body {
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .tabheader__items {
@@ -168,10 +168,12 @@ body {
 
 .soldier__container {
     left: -35%;
+    bottom: 0;
 }
 
 .opponent__container {
     right: -35%;
+    bottom: 0;
 }
 
 
@@ -203,6 +205,7 @@ body {
     width: 3vh;
     height: 4vh;
     background-color: rgba(0, 0, 0, 0.5);
+    box-shadow:0 0 0 1vh  rgba(0, 0, 0, 1);
 }
 
 .body__section:first-of-type,
@@ -675,7 +678,7 @@ body {
 @keyframes flow__down {
     0% {
         left: 25%;
-        bottom:0;
+        bottom:0%;
     }
 
     100% {
@@ -837,7 +840,7 @@ body {
 
 
 .neptune__rocket__launch {
-    animation: neptune__rocket__launch 1s linear infinite forwards;
+    animation: neptune__rocket__launch 10s linear infinite forwards;
 }
 
 @keyframes neptune__rocket__launch {

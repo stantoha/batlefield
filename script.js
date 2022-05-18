@@ -377,7 +377,7 @@ buts.forEach((but, i) => {
             }
 
             if (weapons[i].children[0].classList.contains('neptune__launcher__container')) {
-                neptuneRocket.classList.remove('neptune__rocket');
+                neptuneRocket.children[0].classList.remove('neptune__rocket');
                 neptuneRocket.classList.add('neptune__rocket__launch');
                 neptunefire.classList.remove('hidden');
                 neptunefire.classList.add('shown');
