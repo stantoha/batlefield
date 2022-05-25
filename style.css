@@ -1,11 +1,13 @@
 body {
     box-sizing: border-box;
     width: 100%;
-    max-width: 1980px;
+
     height: 100vh;
     margin: 0 auto;
     padding: 0;
     border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.8);
+
 }
 
 
@@ -14,6 +16,7 @@ body {
     display: block;
     height: 100%;
     margin: 0 auto;
+    max-width: 1720px;
 }
 
 
@@ -22,7 +25,7 @@ body {
 .header {
     display: flex;
     align-items: center;
-    height: 10  vh;
+    height: 8vh;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -36,7 +39,7 @@ body {
 
 .trident {
     width: auto;
-    height: 8vh;
+    height: 6vh;
 }
 
 
@@ -61,10 +64,10 @@ body {
 
 
 .main {
-    height: 90vh;
+    margin: 0;
+    height: 80%;
     background-color: rgba(0, 0, 0, 0.2);
-/*     padding: 1vh;
- */}
+}
 
 
 /* Tabcontainer */
@@ -75,38 +78,47 @@ body {
     align-items: center;
     border: 1px solid black;
     height: 100%;
+    /* padding: 2vh; */
 
 }
 
 .tabcontent {
-    flex: 100%;
+    flex: 90%;
     border: 1px solid black;
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .tabheader__items {
     display: flex;
+    align-self: center;
+align-items:center;    
     justify-content: space-around;
     position: absolute;
-    top: 0;
-    right: 5%;
+    bottom:  0;
+    right: 8%;
+    padding:0.5%;
+    margin: 0 auto;
+    width:auto;
+    background-color: rgba(255, 255, 255, 0.1);
+
 }
 
 .tabheader__item {
     display: flex;
-    height: 6vh;
-    width: 4vh;
+    height: 8vh;
+    width: 6vh;
     justify-content: space-around;
     align-items: center;
     border-radius: 1vh/1vh;
     box-shadow: 0 0 1vh 0 rgba(255, 255, 255, 0.6);
-    margin: 1vh;
-    padding: 1vh;
+    margin: 1% 5%;
+    padding: 1%;
+    border:1px solid white;
 }
 
 .tabheader__item__active {
@@ -124,17 +136,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1vh;
+    margin: 1%;
     background-color: orange;
-    top: 1vh;
-    right: 41%;
-    padding: 1vh 2vh;
+    bottom:1%;
+    right: 45%;
+    padding: 1% 2%;
     text-align: center;
     text-transform: uppercase;
     border-radius: 15px/15px;
     color: rgba(255, 255, 255, 0.6);
-    height: 6vh;
-    width: auto;
+    height: 7%;
+    width: 10%;
 }
 
 
@@ -538,7 +550,7 @@ body {
     animation: flames__blow 200ms linear 1 forwards;
     background: url("img/Новая папка/flames2.gif") no-repeat 50% 50%;
     background-size: contain;
-    background-position: top;
+    background-position: center;
 }
 
 @keyframes flames__blow {
@@ -579,8 +591,8 @@ body {
 
 .burn__fire {
     background: url("img/weapon/fire.gif") no-repeat 50% 50%;
-    background-size: contain;
-    background-position: top left;
+    background-size: cover;
+    background-position: center;
 }
 
 .smoke {
@@ -801,7 +813,7 @@ body {
 .neptune__fire {
     position: absolute;
     transform: translateX(-50vh);
-    animation: neptune__fire 50ms linear infinite forwards;
+    animation: neptune__fire 10ms linear infinite forwards;
     opacity: 0;
 }
 
@@ -840,28 +852,33 @@ body {
 
 
 .neptune__rocket__launch {
-    animation: neptune__rocket__launch 10s linear infinite forwards;
+    animation: neptune__rocket__launch 2s linear infinite forwards;
 }
 
 @keyframes neptune__rocket__launch {
     0% {
-        transform: translate(-7vh, 7vh);
+        transform: translate(0, 0);
     }
 
-    25% {
-        transform: translate(80vh, 20vh) rotate(10deg);
+    20% {
+        transform: translate(150vh, 20vh) rotate(10deg);
     }
 
-    50% {
-        transform: translate(250vh, 100vh) rotate(30deg);
+    40% {
+        transform: translate(250vh, 50vh) rotate(30deg);
     }
 
-    75% {
-        transform: translate(400vh, 200vh) rotate(45deg);
+    60% {
+        transform: translate(350vh, 100vh) rotate(40deg);
+    }
+    
+
+    80% {
+        transform: translate(480vh, 200vh) rotate(50deg);
     }
 
     100% {
-        transform: translate(600vh, 430vh) rotate(60deg);
+        transform: translate(600vh, 430vh) rotate(70deg);
     }
 }
 
@@ -875,19 +892,6 @@ body {
 .moscow__ship {
     transform: scale(1.8);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -922,4 +926,8 @@ body {
     to {
         opacity: 1;
     }
+}
+
+.footer{
+    height: 8%;
 }

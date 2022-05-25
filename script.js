@@ -49,7 +49,7 @@ heroes.forEach((item, i) => {
 });
 
 let mainBackground = document.querySelectorAll('.wrapper'),
-    mainBackgrounds = ["img/backgrounds/mordor.png"/* ,"img/backgrounds/bg (3).jpg", "img/backgrounds/bg4.jpg", "img/backgrounds/bg5.jfif", "img/backgrounds/bg6.jfif", "img/backgrounds/bg7.jfif", "img/backgrounds/bg8.jfif", "img/backgrounds/bg (1).png", "img/backgrounds/bg (2).png", "img/backgrounds/bg (3).png", "img/backgrounds/bg (4).png", "img/backgrounds/bg (5).png", "img/backgrounds/bg (6).png" */];
+    mainBackgrounds = ["img/backgrounds/mordor.png","img/backgrounds/bg (3).jpg", "img/backgrounds/bg4.jpg", "img/backgrounds/bg5.jfif", "img/backgrounds/bg6.jfif", "img/backgrounds/bg7.jfif", "img/backgrounds/bg8.jfif", "img/backgrounds/bg (1).png", "img/backgrounds/bg (2).png", "img/backgrounds/bg (3).png", "img/backgrounds/bg (4).png", "img/backgrounds/bg (5).png", "img/backgrounds/bg (6).png"];
 
 mainBackground.forEach((item, i) => {
 
@@ -90,7 +90,8 @@ let soldierContainers = document.querySelectorAll('.soldier__container'),
     neptuneLauncher = document.querySelector('.neptune__launcher__container'),
     neptuneRocket = document.querySelector('.neptune__rocket'),
     neptunefire = document.querySelector('.neptune__fire'),
-
+    shipCont= document.querySelector('.ship__container'),
+    ship = document.querySelector('.moscow__ship'),
     i = Number,
     buts = document.querySelectorAll('.but');
 
@@ -361,17 +362,21 @@ buts.forEach((but, i) => {
                 }, 1000);
                 setTimeout(() => {
                     opponents[i].parentElement.parentElement.classList.add('flames__blow');
-                    bodySectionBlocks.forEach(item => {
+
+                     /* bodySectionBlocks.forEach(item => {
                         if (item.parentElement.parentElement.parentElement.classList.contains('opponent__soldier')) {
                             item.classList.add('soldier__blow');
                             item.classList.add('hide');
                             bayraktarBomb.classList.add('hide');
                         }
-                    });
+                    });  */
                     setTimeout(() => {
+                        opponents[i].classList.add('soldier__blow');
+                        opponents[i].classList.add('hidden');
+                        bayraktarBomb.classList.add('hide');
                         opponents[i].parentElement.parentElement.classList.remove('flames__blow');
                         opponents[i].parentElement.parentElement.classList.add('smoke');
-                        opponents[i].parentElement.classList.add('burn__fire');
+                        
                     }, 200);
                 }, 3500);
             }
@@ -381,6 +386,13 @@ buts.forEach((but, i) => {
                 neptuneRocket.classList.add('neptune__rocket__launch');
                 neptunefire.classList.remove('hidden');
                 neptunefire.classList.add('shown');
+                setTimeout(()=>{
+                    shipCont.classList.add('flames__blow');
+                    setTimeout(()=>{
+                        shipCont.classList.remove('flames__blow');
+                        shipCont.classList.remove('smoke');
+                       },1000);
+                   },2000); 
             }
         }
     })
